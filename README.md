@@ -2,6 +2,8 @@
 
 ## DPLL-algoritmi Pythonilla, fil. yo Lassi Savolainen
 
+### README
+
 DPLL-algoritmin toteutus Pythonilla. Algoritmit ja tekoäly -harjoitustyö
 
 #### Dokumentteja

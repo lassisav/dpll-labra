@@ -2,6 +2,8 @@
 
 ## DPLL-algoritmi Pythonilla, fil. yo Lassi Savolainen
 
+### Määrittelydokumentti
+
 #### Harjoitustyön ydin
 
 Harjoitustyössä toteutetaan [propositiologiikan toteutuvuusongelman](https://fi.wikipedia.org/wiki/Lauselogiikan_toteutuvuusongelma) ratkaiseva Davis-Putnam-Logemann-Loveland -algoritmi, eli [DPLL](https://en.wikipedia.org/wiki/DPLL_algorithm). Algoritmille annetaan propositiolause [konjunktiivisessa normaalimuodossa](https://fi.wikipedia.org/wiki/Konjunktiivinen_normaalimuoto), [DIMACS CNF](https://users.aalto.fi/~tjunttil/2021-DP-AUT/notes-sat/solving.html#the-dimacs-cnf-file-format) -formaatissa. Algoritmi palauttaa lauseen toteuttavan totuusjakauman, joka on tyhjä lauseen ollessa ristiriita.

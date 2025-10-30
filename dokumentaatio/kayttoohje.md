@@ -2,6 +2,6 @@
 
 ## DPLL-algoritmi Pythonilla, fil. yo Lassi Savolainen
 
-### Viikkoraportt, viikko 1
+### Käyttö-ohje
 
 Todo
