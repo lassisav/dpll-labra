@@ -1,0 +1,8 @@
+c Kommenttirivejä ei käsitellä
+c
+c p-riviltä otetaan talteen muuttuijen ja rivien määrä
+p cnf 3 3
+c Muilta riveiltä otetaan arvot, rivi on klausuuli, etumerkki totuusarvo ja itseisarvo totuusmuuttuja
+-1 2 0
+-1 3 0
+1 -2 -3 0
