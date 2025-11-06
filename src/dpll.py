@@ -14,20 +14,21 @@ def main():
     ## Lue syöte ja muunna syöte listojen listaksi
     alku_klausuuli = syote_purku(syote)
     ## Tarkistustuloste, poistetaan lopputuoteesta
-    tulosta_lista(alku_klausuuli)
+    tulosta_klausuulilista(alku_klausuuli)
     ##TODO: Etsi listojen listasta totuusjakauma
     jakauma = karsinnan_alustus(alku_klausuuli, None)
     ##TODO: Tulosta lopputulos
-    print(jakauma_merkkijonoksi(jakauma))
+    print(literaalit_merkkijonoksi(jakauma))
     
 
 def karsinnan_alustus(lista, jakauma):
+    """Funktio, joka toteuttaa algoritmin alkuvaiheessa tehtävät toimet, ja siirtää toteutuksen eteenpäin karsinta-funktiolle."""
     ##TODO: Puhtaan literaalin poisto
     ## Toteutusjakauman haku
     return karsinta(lista, jakauma)
 
 def karsinta(lista, jakauma):
-    pass
+    """Funktio, joka toteuttaa algoritmin toistettavat toimet."""
     ## Onnistumisen tarkistus
     if lista is None:
         return jakauma
@@ -40,6 +41,7 @@ def karsinta(lista, jakauma):
     ##TODO: Literaalin negaation karsinta
 
 def tyhja_klausuuli(lista):
+    """Tarkistaa, onko syötteenä annetussa listassa tyhjää klausuulia."""
     if lista is None:
         return False
     if lista.arvot is None:
@@ -48,7 +50,8 @@ def tyhja_klausuuli(lista):
 
 def syotteen_kysyja():
     """Kysyy käyttäjältä DIMACS CNF -tiedoston polun.
-    Tarkistaa että tiedosto on olemassa, mutta olettaa sen olevan formaatin mukainen."""
+    Tarkistaa että tiedosto on olemassa, mutta olettaa sen olevan formaatin mukainen.
+    Palauttaa kysytyn polun."""
 
     print("Syötä tiedoston kansion nimi ja tiedoston nimi.")
     print("Käytä tiedoston polkua dpll-labra -kansiosta lähtien")
@@ -59,23 +62,22 @@ def syotteen_kysyja():
             return syote
         print("Viallinen syöte, yritä uudelleen")
 
-def tulosta_lista(lista):
-    """Apufunktio, joka tulostaa listan terminaaliin suhteellisen luettavassa muodossa,
+def tulosta_klausuulilista(lista):
+    """Apufunktio, joka tulostaa klausuulilistan terminaaliin suhteellisen luettavassa muodossa,
     käytetään debuggaukseen."""
     tama_klausuuli = lista
     tama_literaali = lista.arvot
     klausuuli_indeksi = 1
     while tama_klausuuli is not None:
-        while tama_literaali is not None:
-            print(tama_literaali.arvo)
-            tama_literaali = tama_literaali.linkki
-        print("Klausuulin " + str(klausuuli_indeksi) + " loppu")
+        print("Klausuuli " + str(klausuuli_indeksi))
+        print(literaalit_merkkijonoksi(tama_literaali))
         klausuuli_indeksi += 1
         tama_klausuuli = tama_klausuuli.linkki
         if tama_klausuuli is not None:
             tama_literaali = tama_klausuuli.arvot
 
-def jakauma_merkkijonoksi(jakauma):
+def literaalit_merkkijonoksi(jakauma):
+    """Ottaa syötteenä listan literaaleja, ja palauttaa listaa kuvaavan merkkijonon."""
     if jakauma is None:
         return "Ei toteutuva"
     tuloste = ""
