@@ -1,3 +1,7 @@
+
+
+#Tämän alapuolella GitHub:n Python-pohjan mukaiset ignoraukset.
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
