@@ -52,8 +52,10 @@ def tyhja_klausuuli(lista):
     return lista.linkki
 
 def literaalin_valinta(lista):
-    ##TODO
-    return 0
+    """Saa syötteenä listan klausuuleja, ja palauttaa ensimmäisen klausuulin ensimmäisen literaalin.
+    Olettaa että listassa on vähintään yksi klausuuli,
+    Olettaa että ensimmäisessä klausuulissa on vähintään yksi literaali."""
+    return lista.arvot.arvo
 
 def syotteen_kysyja():
     """Kysyy käyttäjältä DIMACS CNF -tiedoston polun.
