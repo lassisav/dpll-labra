@@ -43,7 +43,7 @@ def karsinta(lista, jakauma):
     ## Jakauman palautus
     return jakauma
 
-def tyhja_klausuuli(lista):
+def tyhja_klausuuli(lista): ## Yksikkötestit tehty
     """Tarkistaa, onko syötteenä annetussa listassa tyhjää klausuulia."""
     if lista is None:
         return False
