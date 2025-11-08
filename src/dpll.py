@@ -36,9 +36,12 @@ def karsinta(lista, jakauma):
     if tyhja_klausuuli(lista):
         return None
     ##TODO: Yksikköpropagaatio
-    ##TODO: Literaalin valinta
+    ## Literaalin valinta
+    valittu = literaalin_valinta(lista)
     ##TODO: Literaalin karsinta
     ##TODO: Literaalin negaation karsinta
+    ## Jakauman palautus
+    return jakauma
 
 def tyhja_klausuuli(lista):
     """Tarkistaa, onko syötteenä annetussa listassa tyhjää klausuulia."""
@@ -47,6 +50,10 @@ def tyhja_klausuuli(lista):
     if lista.arvot is None:
         return True
     return lista.linkki
+
+def literaalin_valinta(lista):
+    ##TODO
+    return 0
 
 def syotteen_kysyja():
     """Kysyy käyttäjältä DIMACS CNF -tiedoston polun.
