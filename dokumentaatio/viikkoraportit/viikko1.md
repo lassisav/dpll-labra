@@ -2,7 +2,7 @@
 
 ## DPLL-algoritmi Pythonilla, fil. yo Lassi Savolainen
 
-### Viikkoraportt, viikko 1
+### Viikkoraportti, viikko 1
 
 Ensimmäisellä viikolla luotiin harjoitustyölle määrittely, alustettiin repositorio, ja tutustuttiin aiheeseen, ja algoritmin eri toteutuksiin ja optimisaatiomahdollisuuksiin.
 
