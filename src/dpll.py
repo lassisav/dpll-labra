@@ -51,7 +51,7 @@ def tyhja_klausuuli(lista): ## Yksikkötestit tehty
         return True
     return lista.linkki
 
-def literaalin_valinta(lista):
+def literaalin_valinta(lista): ## Yksikkötestit tehty
     """Saa syötteenä listan klausuuleja, ja palauttaa ensimmäisen klausuulin ensimmäisen literaalin.
     Palauttaa None, jos syötteellä ei ole Klausuulin arvot-kenttää,
     tai arvot:lla Literaalin arvo-kenttää,
