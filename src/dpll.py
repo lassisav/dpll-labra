@@ -53,9 +53,15 @@ def tyhja_klausuuli(lista): ## Yksikkötestit tehty
 
 def literaalin_valinta(lista):
     """Saa syötteenä listan klausuuleja, ja palauttaa ensimmäisen klausuulin ensimmäisen literaalin.
-    Olettaa että listassa on vähintään yksi klausuuli,
-    Olettaa että ensimmäisessä klausuulissa on vähintään yksi literaali."""
-    return lista.arvot.arvo
+    Palauttaa None, jos syötteellä ei ole Klausuulin arvot-kenttää,
+    tai arvot:lla Literaalin arvo-kenttää,
+    tai arvo:ssa on jotain muuta kuin kokonaisluku.
+    Ei harkitse, onko totuusjakaumaan lisättyjä arvoja vastaavat literaalit poistettu."""
+    if hasattr(lista, 'arvot'):
+        if hasattr(lista.arvot, 'arvo'):
+            if isinstance(lista.arvot.arvo, int):
+                return lista.arvot.arvo
+    return None
 
 def syotteen_kysyja():
     """Kysyy käyttäjältä DIMACS CNF -tiedoston polun.

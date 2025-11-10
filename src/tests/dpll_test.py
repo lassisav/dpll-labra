@@ -33,3 +33,28 @@ class TestDpllTyhjaKlausuuli(unittest.TestCase):
         testaaja = Klausuuli(None)
         testaaja.linkki = Klausuuli(Literaali(1))
         self.assertTrue(dpll.tyhja_klausuuli(testaaja))
+
+class TestDpllLiteraalinValinta(unittest.TestCase):
+    """Testaa dpll.py -tiedoston funktion literaalin_valinta toimintaa."""
+
+    def test_literaalin_valinta_yksi_klausuuli_yksi_literaali(self):
+        """Testaa, että literaalin_valinta palauttaa ainoan klausuulin ainoan literaalin,
+        kun sille annetaan yhden Literaalin sisältävä yksittäinen Klausuuli."""
+        self.assertEqual(1, dpll.literaalin_valinta(Klausuuli(Literaali(1))))
+
+    def test_literaalin_valinta_non_sequitur_syote(self):
+        """Testaa, että literaalin_valinta palauttaa None,
+        kun sille annetaan täysin sopimaton syöte, testitapauksessa merkkijono"""
+        self.assertEqual(None, dpll.literaalin_valinta("Eihän tämä voi toimia."))
+
+    def test_literaalin_valinta_yksi_klausuuli_arvot_ei_literaali(self):
+        """Testaa, että literaalin_valinta palauttaa None,
+        kun sille annetaan Klausuuli, jonka arvot-kentässä on täysin sopimaton syöte,
+        testitapauksessa merkkijono"""
+        self.assertEqual(None, dpll.literaalin_valinta(Klausuuli("Eihän tämä voi toimia.")))
+
+    def test_literaalin_valinta_literaalin_sopimaton_arvo(self):
+        """Testaa, että literaalin_valinta palauttaa None,
+        kun sille annetaan Klausuuli, jonka arvot-kentässä on Literaali, jonka arvo ei ole kokonaisluku,
+        testitapauksessa merkkijono"""
+        self.assertEqual(None, dpll.literaalin_valinta(Klausuuli(Literaali("Eihän tämä voi toimia."))))
