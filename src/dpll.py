@@ -29,27 +29,20 @@ def karsinnan_alustus(lista, jakauma):
 
 def karsinta(lista, jakauma):
     """Funktio, joka toteuttaa algoritmin toistettavat toimet."""
-    print("Lähetään kattelee jakaumalla " + literaalit_merkkijonoksi(jakauma))
     ## Onnistumisen tarkistus
     if lista is None:
-        print("Onnistuttiin jakaumalla " + literaalit_merkkijonoksi(jakauma))
         return jakauma
     ## Epäonnistumisen tarkistus
     if tyhja_klausuuli(lista):
-        print("Epäonnistuttiin")
         return None
     ##TODO: Yksikköpropagaatio
     ## Literaalin valinta
     valittu = literaalin_valinta(lista)
-    print("Valittiin literaali " + str(valittu))
     ## Yritetään literaalilla
     yritys_lista = luo_kopio_klausuuli(lista)
     yritys_jakauma = luo_kopio_literaali(jakauma)
-    print("Kopioitiin jakauma " + literaalit_merkkijonoksi(yritys_jakauma))
     yritys_jakauma = lisaa_loppuun_literaali(yritys_jakauma, valittu)
-    print("Lisäystä perään " + literaalit_merkkijonoksi(yritys_jakauma))
     yritys_lista = poista_annettu(yritys_lista, valittu)
-    print("Yritetään jakaumalla " + literaalit_merkkijonoksi(yritys_jakauma))
     mahdollisuus = karsinta(yritys_lista, yritys_jakauma)
     if mahdollisuus is not None:
         return mahdollisuus
