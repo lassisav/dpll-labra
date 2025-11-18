@@ -61,27 +61,44 @@ def karsinta(lista, jakauma):
 def poista_annettu(lista, annettu):
     """Poistaa listasta klausuulit, joissa on annetun arvoinen literaali,
     sekä annetun arvon negaatioiset literaalit."""
-    if lista is None:
-        return lista
-    viime = None
-    tama = lista.arvot
-    while True:
-        if tama.arvo == annettu:
-            return poista_annettu(lista.linkki, annettu)
-        if tama.arvo == (annettu * (-1)):
-            if viime is None:
-                lista.arvot = tama.linkki    
+    viime_klausuuli = None
+    tama_klausuuli = lista
+    ylempi_jatkuu = True
+    while ylempi_jatkuu:
+        alempi_jatkuu = True
+        viime_literaali = None
+        tama_literaali = tama_klausuuli.arvot
+        while alempi_jatkuu:
+            if tama_literaali.arvo == annettu:
+                if viime_klausuuli is None:
+                    lista = tama_klausuuli.linkki
+                else:
+                    viime_klausuuli.linkki = tama_klausuuli.linkki
+                tama_klausuuli = tama_klausuuli.linkki
+                if tama_klausuuli is None:
+                        ylempi_jatkuu = False
+                alempi_jatkuu = False
+            elif tama_literaali.arvo == (annettu * (-1)):
+                if viime_literaali is None:
+                    tama_klausuuli.arvot = tama_literaali.linkki
+                else:
+                    viime_literaali.linkki = tama_literaali.linkki
+                viime_klausuuli = tama_klausuuli
+                tama_klausuuli = tama_klausuuli.linkki
+                if tama_klausuuli is None:
+                        ylempi_jatkuu = False
+                alempi_jatkuu = False
             else:
-                viime.linkki = tama.linkki
-            lista.linkki = poista_annettu(lista.linkki, annettu)
-            return lista
-        if tama.linkki is None:
-            lista.arvot = tama.linkki
-            lista.linkki = poista_annettu(lista.linkki, annettu)
-            return lista
-        viime = tama
-        tama = tama.linkki
-
+                if tama_literaali.linkki is None:
+                    viime_klausuuli = tama_klausuuli
+                    tama_klausuuli = tama_klausuuli.linkki
+                    if tama_klausuuli is None:
+                        ylempi_jatkuu = False
+                    alempi_jatkuu = False
+                else:
+                    viime_literaali = tama_literaali
+                    tama_literaali = tama_literaali.linkki
+    return lista    
 
 def tyhja_klausuuli(lista): ## Yksikkötestit tehty
     """Tarkistaa, onko syötteenä annetussa listassa tyhjää klausuulia."""
