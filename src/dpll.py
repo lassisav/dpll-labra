@@ -182,9 +182,15 @@ def luo_kopio_literaali(lista):
     """Luo kopion annetusta literaalien listasta ja palauttaa sen."""
     if lista is None:
         return None
-    uusi = Literaali(lista.arvo)
-    uusi.linkki = luo_kopio_literaali(lista.linkki)
-    return uusi
+    tama_kopioitava = lista
+    tama_kopio = Literaali(lista.arvo)
+    lista_kopio = tama_kopio
+    while True:
+        if tama_kopioitava.linkki is None:
+            return lista_kopio
+        tama_kopioitava = tama_kopioitava.linkki
+        tama_kopio.linkki = Literaali(tama_kopioitava.arvo)
+        tama_kopio = tama_kopio.linkki
 
 def lisaa_loppuun_klausuuli(lista, arvot):
     """Lisää listan loppuun klausuulin annetulla arvot:lla."""
