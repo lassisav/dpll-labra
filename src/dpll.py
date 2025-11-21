@@ -182,7 +182,7 @@ def literaalit_merkkijonoksi(jakauma):
         if jakauma.linkki is None:
             jatkuu = False
         else:
-            tuloste += ", "
+            tuloste += " "
             jakauma = jakauma.linkki
     return tuloste
 
@@ -235,4 +235,3 @@ def lisaa_jakaumaan_literaali(jakauma, arvo):
 
 if __name__=="__main__":
     main()
-
