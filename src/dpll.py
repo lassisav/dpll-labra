@@ -8,21 +8,22 @@ from syote_purku import syote_purku
 
 def main():
     """Pääfunktio, joka kutsuu algoritmin osat toteuttavia funktioita.
-    Ohjelman kulku kuvailtu tarkemmin funktiokutsuja edeltävissä kommenteissa, sekä alifunktioiden kuvauksissa."""
+    Ohjelman kulku kuvailtu tarkemmin funktiokutsuja edeltävissä kommenteissa,
+    sekä alifunktioiden kuvauksissa."""
     ## Kysy syötteen sijaintia
     syote = syotteen_kysyja()
     ## Lue syöte ja muunna syöte listojen listaksi
     alku_klausuuli = syote_purku(syote)
     ## Tarkistustuloste, poistetaan lopputuoteesta
     tulosta_klausuulilista(alku_klausuuli)
-    ##TODO: Etsi listojen listasta totuusjakauma
+    ## Etsi listojen listasta totuusjakauma, aka DPLL-algoritmi
     jakauma = karsinnan_alustus(alku_klausuuli, None)
-    ##TODO: Tulosta lopputulos
+    ## Tulosta lopputulos
     print(literaalit_merkkijonoksi(jakauma))
-    
 
 def karsinnan_alustus(lista, jakauma):
-    """Funktio, joka toteuttaa algoritmin alkuvaiheessa tehtävät toimet, ja siirtää toteutuksen eteenpäin karsinta-funktiolle."""
+    """Funktio, joka toteuttaa algoritmin alkuvaiheessa tehtävät toimet,
+    ja siirtää toteutuksen eteenpäin karsinta-funktiolle."""
     ##TODO: Puhtaan literaalin poisto
     ## Toteutusjakauman haku
     return karsinta(lista, jakauma)
@@ -35,14 +36,13 @@ def karsinta(lista, jakauma):
     ## Epäonnistumisen tarkistus
     if tyhja_klausuuli(lista):
         return None
-    ##TODO: Yksikköpropagaatio
+    ## Yksikköpropagaatio
     yksikoita_loytyy = True
     while yksikoita_loytyy:
         valittu = yksikkopropagaation_valinta(lista)
         if valittu == 0:
             yksikoita_loytyy = False
         else:
-            print("uprop " + str(valittu))
             lista = poista_annettu(lista, valittu)
             jakauma = lisaa_jakaumaan_literaali(jakauma, valittu)
             if lista is None:
@@ -89,7 +89,7 @@ def poista_annettu(lista, annettu):
                     viime_klausuuli.linkki = tama_klausuuli.linkki
                 tama_klausuuli = tama_klausuuli.linkki
                 if tama_klausuuli is None:
-                        ylempi_jatkuu = False
+                    ylempi_jatkuu = False
                 alempi_jatkuu = False
             elif tama_literaali.arvo == (annettu * (-1)):
                 if viime_literaali is None:
@@ -99,7 +99,7 @@ def poista_annettu(lista, annettu):
                 viime_klausuuli = tama_klausuuli
                 tama_klausuuli = tama_klausuuli.linkki
                 if tama_klausuuli is None:
-                        ylempi_jatkuu = False
+                    ylempi_jatkuu = False
                 alempi_jatkuu = False
             else:
                 if tama_literaali.linkki is None:
@@ -133,7 +133,7 @@ def yksikkopropagaation_valinta(lista):
         if lista.arvot.linkki is None:
             return lista.arvot.arvo
         lista = lista.linkki
-    
+
 def literaalin_valinta(lista): ## Yksikkötestit tehty
     """Saa syötteenä listan klausuuleja, ja palauttaa ensimmäisen klausuulin ensimmäisen literaalin.
     Palauttaa None, jos syötteellä ei ole Klausuulin arvot-kenttää,
@@ -191,14 +191,14 @@ def literaalit_merkkijonoksi(jakauma):
 
 def luo_kopio_klausuuli(vanha_lista):
     """Luo kopion annetusta klausuulien listasta ja palauttaa sen."""
-    vanha_tama_klausuuli = vanha_lista
+    vanha_klausuuli = vanha_lista
     uusi_lista = Klausuuli(luo_kopio_literaali(vanha_lista.arvot))
-    uusi_tama_klausuuli = uusi_lista
+    uusi_klausuuli = uusi_lista
     while True:
-        if vanha_tama_klausuuli.linkki is not None:
-            uusi_tama_klausuuli.linkki = Klausuuli(luo_kopio_literaali(vanha_tama_klausuuli.linkki.arvot))
-            vanha_tama_klausuuli = vanha_tama_klausuuli.linkki
-            uusi_tama_klausuuli = uusi_tama_klausuuli.linkki
+        if vanha_klausuuli.linkki is not None:
+            uusi_klausuuli.linkki = Klausuuli(luo_kopio_literaali(vanha_klausuuli.linkki.arvot))
+            vanha_klausuuli = vanha_klausuuli.linkki
+            uusi_klausuuli = uusi_klausuuli.linkki
         else:
             return uusi_lista
 
