@@ -36,6 +36,19 @@ def karsinta(lista, jakauma):
     if tyhja_klausuuli(lista):
         return None
     ##TODO: Yksikköpropagaatio
+    yksikoita_loytyy = True
+    while yksikoita_loytyy:
+        valittu = yksikkopropagaation_valinta(lista)
+        if valittu == 0:
+            yksikoita_loytyy = False
+        else:
+            print("uprop " + str(valittu))
+            lista = poista_annettu(lista, valittu)
+            jakauma = lisaa_loppuun_literaali(jakauma, valittu)
+            if lista is None:
+                return jakauma
+            if tyhja_klausuuli(lista):
+                return None
     ## Literaalin valinta
     valittu = literaalin_valinta(lista)
     ## Yritetään literaalilla
@@ -110,6 +123,14 @@ def tyhja_klausuuli(lista): ## Yksikkötestit tehty
             return True
         pohja = pohja.linkki
 
+def yksikkopropagaation_valinta(lista):
+    while True:
+        if lista is None:
+            return 0
+        if lista.arvot.linkki is None:
+            return lista.arvot.arvo
+        lista = lista.linkki
+    
 def literaalin_valinta(lista): ## Yksikkötestit tehty
     """Saa syötteenä listan klausuuleja, ja palauttaa ensimmäisen klausuulin ensimmäisen literaalin.
     Palauttaa None, jos syötteellä ei ole Klausuulin arvot-kenttää,
