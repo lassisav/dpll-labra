@@ -186,6 +186,19 @@ def literaalit_merkkijonoksi(jakauma):
             jakauma = jakauma.linkki
     return tuloste
 
+def luo_kopio_klausuuli(vanha_lista):
+    """Luo kopion annetusta klausuulien listasta ja palauttaa sen."""
+    vanha_tama_klausuuli = vanha_lista
+    uusi_lista = Klausuuli(luo_kopio_literaali(vanha_lista.arvot))
+    uusi_tama_klausuuli = uusi_lista
+    while True:
+        if vanha_tama_klausuuli.linkki is not None:
+            uusi_tama_klausuuli.linkki = Klausuuli(luo_kopio_literaali(vanha_tama_klausuuli.linkki.arvot))
+            vanha_tama_klausuuli = vanha_tama_klausuuli.linkki
+            uusi_tama_klausuuli = uusi_tama_klausuuli.linkki
+        else:
+            return uusi_lista
+
 def luo_kopio_literaali(lista):
     """Luo kopion annetusta literaalien listasta ja palauttaa sen."""
     if lista is None:
@@ -199,17 +212,6 @@ def luo_kopio_literaali(lista):
         tama_kopioitava = tama_kopioitava.linkki
         tama_kopio.linkki = Literaali(tama_kopioitava.arvo)
         tama_kopio = tama_kopio.linkki
-
-def lisaa_loppuun_klausuuli(lista, arvot):
-    """Lisää listan loppuun klausuulin annetulla arvot:lla."""
-    if lista is None:
-        return Klausuuli(arvot)
-    pohja = lista
-    while True:
-        if pohja.linkki is None:
-            pohja.linkki = Klausuuli(arvot)
-            return lista
-        pohja = pohja.linkki
 
 def lisaa_jakaumaan_literaali(jakauma, arvo):
     """Lisää jakaumaan literaalin annetulla arvolla."""
