@@ -124,6 +124,9 @@ def tyhja_klausuuli(lista): ## Yksikkötestit tehty
         pohja = pohja.linkki
 
 def yksikkopropagaation_valinta(lista):
+    """Saa syötteenä listan klausuuleja, ja palauttaa kokonaislukumuotoisen totuusarvon,
+    joka esiintyy ensimmäisessä yksikköklausuulissa, eli yhden literaalin sisältävässä klausuulissa.
+    Jos listassa ei ole yksikköklausuulia, palauttaa 0."""
     while True:
         if lista is None:
             return 0
