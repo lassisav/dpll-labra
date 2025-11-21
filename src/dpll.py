@@ -44,7 +44,7 @@ def karsinta(lista, jakauma):
         else:
             print("uprop " + str(valittu))
             lista = poista_annettu(lista, valittu)
-            jakauma = lisaa_loppuun_literaali(jakauma, valittu)
+            jakauma = lisaa_jakaumaan_literaali(jakauma, valittu)
             if lista is None:
                 return jakauma
             if tyhja_klausuuli(lista):
@@ -54,7 +54,7 @@ def karsinta(lista, jakauma):
     ## Yritetään literaalilla
     yritys_lista = luo_kopio_klausuuli(lista)
     yritys_jakauma = luo_kopio_literaali(jakauma)
-    yritys_jakauma = lisaa_loppuun_literaali(yritys_jakauma, valittu)
+    yritys_jakauma = lisaa_jakaumaan_literaali(yritys_jakauma, valittu)
     yritys_lista = poista_annettu(yritys_lista, valittu)
     mahdollisuus = karsinta(yritys_lista, yritys_jakauma)
     if mahdollisuus is not None:
@@ -63,7 +63,7 @@ def karsinta(lista, jakauma):
     valittu = valittu * (-1)
     yritys_lista = luo_kopio_klausuuli(lista)
     yritys_jakauma = luo_kopio_literaali(jakauma)
-    yritys_jakauma = lisaa_loppuun_literaali(yritys_jakauma, valittu)
+    yritys_jakauma = lisaa_jakaumaan_literaali(yritys_jakauma, valittu)
     yritys_lista = poista_annettu(yritys_lista, valittu)
     mahdollisuus = karsinta(yritys_lista, yritys_jakauma)
     if mahdollisuus is not None:
@@ -224,15 +224,24 @@ def lisaa_loppuun_klausuuli(lista, arvot):
             return lista
         pohja = pohja.linkki
 
-def lisaa_loppuun_literaali(lista, arvo):
-    """Lisää listan loppuun literaalin annetulla arvolla."""
-    if lista is None:
-        return Literaali(arvo)
-    pohja = lista
+def lisaa_jakaumaan_literaali(jakauma, arvo):
+    """Lisää jakaumaan literaalin annetulla arvolla."""
+    uusi = Literaali(arvo)
+    if jakauma is None:
+        return uusi
+    pohja = jakauma
+    if abs(pohja.arvo) > abs(arvo):
+        uusi.linkki = pohja
+        return uusi
     while True:
         if pohja.linkki is None:
-            pohja.linkki = Literaali(arvo)
-            return lista
+            pohja.linkki = uusi
+            return jakauma
+        if abs(pohja.linkki.arvo) > abs(arvo):
+            jalki = pohja.linkki
+            pohja.linkki = uusi
+            uusi.linkki = jalki
+            return jakauma
         pohja = pohja.linkki
 
 if __name__=="__main__":
