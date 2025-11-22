@@ -2,6 +2,39 @@ import unittest
 from rakenteet import Klausuuli, Literaali
 import dpll
 
+class TestDpllPoistaAnnettu(unittest.TestCase):
+    """Testaa dpll.py -tiedoston funktion poista_annettu toimintaa."""
+    def test_poista_annettu_poistaa_klausuulin(self):
+        """Testaa, että poista_annettu palauttaa None,
+        kun syötteenä annetaan yksi klausuuli, jossa on yksi literaali,
+        jolla on sama arvo kuin funktiolle annettu arvo."""
+        testaaja = Klausuuli(Literaali(3))
+        self.assertEqual(None, dpll.poista_annettu(testaaja, 3))
+
+    def test_poista_annettu_poistaa_literaalin(self):
+        """Testaa, että poista_annettu palauttaa oikein,
+        kun syötteenä annetaan yksi klausuuli, jossa on useampi literaali,
+        joista yhdellä on sama arvo kuin funktiolle annetun arvon vastaluku."""
+        testaaja_literaali = Literaali(6)
+        testaaja_literaali.linkki = Literaali(-4)
+        testaaja_literaali.linkki.linkki = Literaali(10)
+        testaaja = Klausuuli(testaaja_literaali)
+        testaaja = dpll.poista_annettu(testaaja, 4)
+        self.assertEqual("6 10", dpll.literaalit_merkkijonoksi(testaaja.arvot))
+
+    def test_poista_annettu_poistaa_molemmat(self):
+        """Testaa, että poista_annettu palauttaa oikein,
+        kun syötteenä annetaan klausuulilista
+        jossa on klausuuli joka sisältää annetun arvon mukaisen literaalin,
+        sekä klausuuli joka sisältää annetun arvon vastaluvun mukaisen literaalin."""
+        testaaja = Klausuuli(Literaali(-6))
+        testaaja.arvot.linkki = Literaali(-5)
+        testaaja.linkki = Klausuuli(Literaali(5))
+        testaaja.linkki.arvot.linkki = Literaali(6)
+        testaaja = dpll.poista_annettu(testaaja, 6)
+        self.assertEqual(None, testaaja.linkki)
+        self.assertEqual(-5, testaaja.arvot.arvo)
+
 class TestDpllTyhjaKlausuuli(unittest.TestCase):
     """Testaa dpll.py -tiedoston funktion tyhja_klausuuli toimintaa."""
 

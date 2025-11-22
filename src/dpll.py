@@ -69,7 +69,7 @@ def karsinta(lista, jakauma): ## Ei yksikkötestata, irroitetaan mahdollisimman 
     ## Palautetaan tyhjä
     return None
 
-def poista_annettu(lista, annettu): ##TODO: Yksikkötestaus
+def poista_annettu(lista, annettu): ##TODO: Täysin kattava yksikkötestaus
     """Poistaa listasta klausuulit, joissa on annetun arvoinen literaali,
     sekä annetun arvon negaatioiset literaalit."""
     viime_klausuuli = None
