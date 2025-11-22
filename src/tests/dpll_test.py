@@ -59,6 +59,29 @@ class TestDpllLiteraalinValinta(unittest.TestCase):
         jonka arvo ei ole kokonaisluku, testitapauksessa merkkijono"""
         self.assertEqual(None, dpll.literaalin_valinta(Klausuuli(Literaali("Ei toimi."))))
 
+class TestDpllLiteraalitMerkkijonoksi(unittest.TestCase):
+    """Testaa dpll.py -tiedoston funktion literaalin_valinta toimintaa."""
+
+    def test_literaalit_merkkijonoksi_tyhja_syote(self):
+        """Testaa, että literaalit_merkkijonoksi palauttaa merkkijonon "Tyhjä",
+        kun sille annetaan syötteenä None."""
+        self.assertEqual("Tyhjä", dpll.literaalit_merkkijonoksi(None))
+
+    def test_literaalit_merkkijonoksi_yksi_literaali(self):
+        """Testaa, että literaalit_merkkijonoksi palauttaa merkkijonon "2",
+        kun sille annetaan syötteenä literaali arvolla 2 ilman linkkiä."""
+        self.assertEqual("2", dpll.literaalit_merkkijonoksi(Literaali(2)))
+
+    def test_literaalit_merkkijonoksi_monta_literaalia(self):
+        """Testaa, että literaalit_merkkijonoksi palauttaa oikean merkkijonon,
+        kun sille annetaan syötteenä monen literaalin lista."""
+        testaaja = Literaali(4)
+        testaaja.linkki = Literaali(9)
+        testaaja.linkki.linkki = Literaali(-365)
+        testaaja.linkki.linkki.linkki = Literaali(22)
+        testaaja.linkki.linkki.linkki.linkki = Literaali(1)
+        self.assertEqual("4 9 -365 22 1", dpll.literaalit_merkkijonoksi(testaaja))
+
 class TestDpllLisaaJakaumaanLiteraali(unittest.TestCase):
     """Testaa dpll.py -tiedoston funktion lisaa_jakaumaan_literaali toimintaa."""
 

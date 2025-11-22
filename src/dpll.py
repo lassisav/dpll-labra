@@ -174,7 +174,7 @@ def tulosta_klausuulilista(lista):
         if tama_klausuuli is not None:
             tama_literaali = tama_klausuuli.arvot
 
-def literaalit_merkkijonoksi(jakauma):
+def literaalit_merkkijonoksi(jakauma): ## Yksikkötestit tehty
     """Ottaa syötteenä listan literaaleja, ja palauttaa listaa kuvaavan merkkijonon."""
     if jakauma is None:
         return "Tyhjä"
