@@ -60,7 +60,7 @@ class TestDpllLiteraalinValinta(unittest.TestCase):
         self.assertEqual(None, dpll.literaalin_valinta(Klausuuli(Literaali("Ei toimi."))))
 
 class TestDpllLisaaJakaumaanLiteraali(unittest.TestCase):
-    """Testaa dpll.py -tiedoston funktion literaalin_valinta toimintaa."""
+    """Testaa dpll.py -tiedoston funktion lisaa_jakaumaan_literaali toimintaa."""
 
     def test_lisaa_jakaumaan_literaali_tyhja_jakauma(self):
         """Testaa, että tyhjään jakaumaan lisäys palauttaa yhden klausuulin,
