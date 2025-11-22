@@ -6,7 +6,7 @@ from syote_purku import syote_purku
 ## Tämän hetkisessä muodossaan ohjelma ainoastaan muuttaa datan käsiteltävään muotoon.
 ## Algoritmin toteutus puuttuu vielä kokonaisuudessaan.
 
-def main():
+def main(): ## Ei yksikkötestata, pääfunktio jossa mahdollisimman vähän omia toiminnallisuuksia.
     """Pääfunktio, joka kutsuu algoritmin osat toteuttavia funktioita.
     Ohjelman kulku kuvailtu tarkemmin funktiokutsuja edeltävissä kommenteissa,
     sekä alifunktioiden kuvauksissa."""
@@ -21,14 +21,14 @@ def main():
     ## Tulosta lopputulos
     print(literaalit_merkkijonoksi(jakauma))
 
-def karsinnan_alustus(lista, jakauma):
+def karsinnan_alustus(lista, jakauma): ##Ei yksikkötestata, funktio vain kutsuu muita ja palauttaa.
     """Funktio, joka toteuttaa algoritmin alkuvaiheessa tehtävät toimet,
     ja siirtää toteutuksen eteenpäin karsinta-funktiolle."""
     ##TODO: Puhtaan literaalin poisto
     ## Toteutusjakauman haku
     return karsinta(lista, jakauma)
 
-def karsinta(lista, jakauma):
+def karsinta(lista, jakauma): ## Ei yksikkötestata, irroitetaan mahdollisimman paljon yksiköitä.
     """Funktio, joka toteuttaa algoritmin toistettavat toimet."""
     ## Onnistumisen tarkistus
     if lista is None:
@@ -71,7 +71,7 @@ def karsinta(lista, jakauma):
     ## Palautetaan tyhjä
     return None
 
-def poista_annettu(lista, annettu):
+def poista_annettu(lista, annettu): ##TODO: Yksikkötestaus
     """Poistaa listasta klausuulit, joissa on annetun arvoinen literaali,
     sekä annetun arvon negaatioiset literaalit."""
     viime_klausuuli = None
@@ -123,7 +123,7 @@ def tyhja_klausuuli(lista): ## Yksikkötestit tehty
             return True
         pohja = pohja.linkki
 
-def yksikkopropagaation_valinta(lista):
+def yksikkopropagaation_valinta(lista): ##TODO: Yksikkötestaus
     """Saa syötteenä listan klausuuleja, ja palauttaa kokonaislukumuotoisen totuusarvon,
     joka esiintyy ensimmäisessä yksikköklausuulissa, eli yhden literaalin sisältävässä klausuulissa.
     Jos listassa ei ole yksikköklausuulia, palauttaa 0."""
@@ -146,7 +146,8 @@ def literaalin_valinta(lista): ## Yksikkötestit tehty
                 return lista.arvot.arvo
     return None
 
-def syotteen_kysyja():
+##TODO: Eriytä omaan tiedostoonsa.
+def syotteen_kysyja(): ## Ei yksikkötestata, käyttöliittymäfunktio
     """Kysyy käyttäjältä DIMACS CNF -tiedoston polun.
     Tarkistaa että tiedosto on olemassa, mutta olettaa sen olevan formaatin mukainen.
     Palauttaa kysytyn polun."""
@@ -160,7 +161,8 @@ def syotteen_kysyja():
             return syote
         print("Viallinen syöte, yritä uudelleen")
 
-def tulosta_klausuulilista(lista):
+##TODO: Poista tarpeettomana.
+def tulosta_klausuulilista(lista): ## Ei yksikkötestata, funktio ei osa lopputuotetta
     """Apufunktio, joka tulostaa klausuulilistan terminaaliin suhteellisen luettavassa muodossa,
     käytetään debuggaukseen."""
     tama_klausuuli = lista
