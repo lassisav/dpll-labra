@@ -14,8 +14,6 @@ def main(): ## Ei yksikkötestata, pääfunktio jossa mahdollisimman vähän omi
     syote = syotteen_kysyja()
     ## Lue syöte ja muunna syöte listojen listaksi
     alku_klausuuli = syote_purku(syote)
-    ## Tarkistustuloste, poistetaan lopputuoteesta
-    tulosta_klausuulilista(alku_klausuuli)
     ## Etsi listojen listasta totuusjakauma, aka DPLL-algoritmi
     jakauma = karsinnan_alustus(alku_klausuuli, None)
     ## Tulosta lopputulos
@@ -160,21 +158,6 @@ def syotteen_kysyja(): ## Ei yksikkötestata, käyttöliittymäfunktio
         if os.path.exists(syote):
             return syote
         print("Viallinen syöte, yritä uudelleen")
-
-##TODO: Poista tarpeettomana.
-def tulosta_klausuulilista(lista): ## Ei yksikkötestata, funktio ei osa lopputuotetta
-    """Apufunktio, joka tulostaa klausuulilistan terminaaliin suhteellisen luettavassa muodossa,
-    käytetään debuggaukseen."""
-    tama_klausuuli = lista
-    tama_literaali = lista.arvot
-    klausuuli_indeksi = 1
-    while tama_klausuuli is not None:
-        print("Klausuuli " + str(klausuuli_indeksi))
-        print(literaalit_merkkijonoksi(tama_literaali))
-        klausuuli_indeksi += 1
-        tama_klausuuli = tama_klausuuli.linkki
-        if tama_klausuuli is not None:
-            tama_literaali = tama_klausuuli.arvot
 
 def literaalit_merkkijonoksi(jakauma): ## Yksikkötestit tehty
     """Ottaa syötteenä listan literaaleja, ja palauttaa listaa kuvaavan merkkijonon."""
