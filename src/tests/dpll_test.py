@@ -55,6 +55,50 @@ class TestDpllLiteraalinValinta(unittest.TestCase):
 
     def test_literaalin_valinta_literaalin_sopimaton_arvo(self):
         """Testaa, että literaalin_valinta palauttaa None,
-        kun sille annetaan Klausuuli, jonka arvot-kentässä on Literaali, jonka arvo ei ole kokonaisluku,
-        testitapauksessa merkkijono"""
-        self.assertEqual(None, dpll.literaalin_valinta(Klausuuli(Literaali("Eihän tämä voi toimia."))))
+        kun sille annetaan Klausuuli, jonka arvot-kentässä on Literaali,
+        jonka arvo ei ole kokonaisluku, testitapauksessa merkkijono"""
+        self.assertEqual(None, dpll.literaalin_valinta(Klausuuli(Literaali("Ei toimi."))))
+
+class TestDpllLisaaJakaumaanLiteraali(unittest.TestCase):
+    """Testaa dpll.py -tiedoston funktion literaalin_valinta toimintaa."""
+
+    def test_lisaa_jakaumaan_literaali_tyhja_jakauma(self):
+        """Testaa, että tyhjään jakaumaan lisäys palauttaa yhden klausuulin,
+        ja että klausuulin arvo on funktiolle annettu arvo"""
+        testaaja = dpll.lisaa_jakaumaan_literaali(None, 2)
+        self.assertEqual(None, testaaja.linkki)
+        self.assertEqual(2, testaaja.arvo)
+
+    def test_lisaa_jakaumaan_literaali_jakaumassa_pienempi(self):
+        """Testaa, että kun funktiolle annetaan yhden literaalin jakauma,
+        sekä literaalin arvoa suurempi arvo,
+        funktio palauttaa kahden literaalin listan,
+        jonka arvot ovat kasvavassa järjestyksessä."""
+        testaaja = dpll.lisaa_jakaumaan_literaali(None, 5)
+        testaaja = dpll.lisaa_jakaumaan_literaali(testaaja, 9)
+        self.assertEqual(5, testaaja.arvo)
+        self.assertEqual(9, testaaja.linkki.arvo)
+        self.assertEqual(None, testaaja.linkki.linkki)
+
+    def test_lisaa_jakaumaan_literaali_jakaumassa_suurempi(self):
+        """Testaa, että kun funktiolle annetaan yhden literaalin jakauma,
+        sekä literaalin arvoa pienempi arvo,
+        funktio palauttaa kahden literaalin listan,
+        jonka arvot ovat kasvavassa järjestyksessä."""
+        testaaja = dpll.lisaa_jakaumaan_literaali(None, 17)
+        testaaja = dpll.lisaa_jakaumaan_literaali(testaaja, 4)
+        self.assertEqual(4, testaaja.arvo)
+        self.assertEqual(17, testaaja.linkki.arvo)
+        self.assertEqual(None, testaaja.linkki.linkki)
+
+    def test_lisaa_jakaumaan_literaali_monen_syotteen_testi(self):
+        """Testaa, että kun funktion avulla luodaa kuusi literaalia sisältävä jakauma,
+        jakaumassa on oikeat literaalit kasvavassa itseisarvojärjestyksessä."""
+        testaaja = dpll.lisaa_jakaumaan_literaali(None, -9)
+        testaaja = dpll.lisaa_jakaumaan_literaali(testaaja, 18)
+        testaaja = dpll.lisaa_jakaumaan_literaali(testaaja, -666)
+        testaaja = dpll.lisaa_jakaumaan_literaali(testaaja, 21)
+        testaaja = dpll.lisaa_jakaumaan_literaali(testaaja, 79)
+        testaaja = dpll.lisaa_jakaumaan_literaali(testaaja, -35)
+        self.assertEqual("-9 18 21 -35 79 -666", dpll.literaalit_merkkijonoksi(testaaja))
+        

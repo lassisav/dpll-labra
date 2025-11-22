@@ -216,8 +216,9 @@ def luo_kopio_literaali(lista):
         tama_kopio.linkki = Literaali(tama_kopioitava.arvo)
         tama_kopio = tama_kopio.linkki
 
-def lisaa_jakaumaan_literaali(jakauma, arvo):
-    """Lisää jakaumaan literaalin annetulla arvolla."""
+def lisaa_jakaumaan_literaali(jakauma, arvo): ## Yksikkötestit tehty
+    """Lisää jakaumaan literaalin annetulla arvolla.
+    Olettaa jakauman olevan lista literaaleja, ja arvon kokonaisluku."""
     uusi = Literaali(arvo)
     if jakauma is None:
         return uusi
