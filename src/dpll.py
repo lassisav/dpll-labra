@@ -149,7 +149,6 @@ def syotteen_kysyja(): ## Ei yksikkötestata, käyttöliittymäfunktio
     """Kysyy käyttäjältä DIMACS CNF -tiedoston polun.
     Tarkistaa että tiedosto on olemassa, mutta olettaa sen olevan formaatin mukainen.
     Palauttaa kysytyn polun."""
-
     print("Syötä tiedoston kansion nimi ja tiedoston nimi.")
     print("Käytä tiedoston polkua dpll-labra -kansiosta lähtien")
     print("Esimerkiksi esimerkkidata/esim1.cnf")
@@ -174,7 +173,7 @@ def literaalit_merkkijonoksi(jakauma): ## Yksikkötestit tehty
             jakauma = jakauma.linkki
     return tuloste
 
-def luo_kopio_klausuuli(vanha_lista):
+def luo_kopio_klausuuli(vanha_lista): ##TODO: Yksikkötestaus
     """Luo kopion annetusta klausuulien listasta ja palauttaa sen."""
     vanha_klausuuli = vanha_lista
     uusi_lista = Klausuuli(luo_kopio_literaali(vanha_lista.arvot))
@@ -187,7 +186,7 @@ def luo_kopio_klausuuli(vanha_lista):
         else:
             return uusi_lista
 
-def luo_kopio_literaali(lista):
+def luo_kopio_literaali(lista): ##TODO: Yksikkötestaus
     """Luo kopion annetusta literaalien listasta ja palauttaa sen."""
     if lista is None:
         return None
