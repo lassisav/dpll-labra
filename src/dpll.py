@@ -23,8 +23,74 @@ def karsinnan_alustus(lista, jakauma): ##Ei yksikkötestata, funktio vain kutsuu
     """Funktio, joka toteuttaa algoritmin alkuvaiheessa tehtävät toimet,
     ja siirtää toteutuksen eteenpäin karsinta-funktiolle."""
     ##TODO: Puhtaan literaalin poisto
+    lista, jakauma = puhtaan_literaalin_poisto(lista, jakauma)
     ## Toteutusjakauman haku
     return karsinta(lista, jakauma)
+
+def puhtaan_literaalin_poisto(lista, jakauma):
+    """Poistetaan klausuulilistasta löytyvät puhtaat literaalit,
+    mukaan lukien aiempien poistojen puhtaaksi muuttamat literaalit."""
+    ###Käydään läpi klausuulilista, ja etsitään suurin itseisarvo
+    suurin_muuttuja = etsi_isoin_muuttuja(lista)
+    ## Käydään totuusmuuttujia läpi, ja poistetaan puhtaaksi todetut.
+    ## Silmukkaa käydään, kunnes on löydetty epäpuhtaita yhtä monta putkeen, kuin on mahdollisia totuusmuuttujia.
+    tama_muuttuja = 1
+    kayty = 0
+    while True:
+        tama_totta, tama_epatotta = etsi_totuus(lista, tama_muuttuja)
+        if tama_totta and not tama_epatotta:
+            lista = poista_annettu(lista, tama_muuttuja * (-1))
+            kayty = 0
+            jakauma = lisaa_jakaumaan_literaali(jakauma, tama_muuttuja * (-1))
+        if tama_epatotta and not tama_totta:
+            lista = poista_annettu(lista, tama_muuttuja)
+            kayty = 0
+            jakauma = lisaa_jakaumaan_literaali(jakauma, tama_muuttuja)
+        if tama_totta == tama_epatotta:
+            kayty += 1
+            if kayty >= suurin_muuttuja:
+                return lista, jakauma
+        tama_muuttuja += 1
+        if tama_muuttuja > suurin_muuttuja:
+            tama_muuttuja = 1
+
+def etsi_isoin_muuttuja(lista):
+    """Etsii klausuulilistasta isoimman totuusmuuttujan merkkiluvun, ja palauttaa sen."""
+    n = 0
+    tama_klausuuli = lista
+    tama_literaali = lista.arvot
+    while True:
+        n = max(n, abs(tama_literaali.arvo))
+        if tama_literaali.linkki is not None:
+            tama_literaali = tama_literaali.linkki
+        elif tama_klausuuli.linkki is not None:
+            tama_klausuuli = tama_klausuuli.linkki
+            tama_literaali = tama_klausuuli.arvot
+        else:
+            return n
+
+def etsi_totuus(lista, annettu):
+    """Etsii klausuulilistasta annetun totuusmuuttujan totuus- ja epätotuusarvot.
+    Palauttaa tiedon totuuden ja epätotuuden löytyvyydestä."""
+    if lista is None:
+        return False, False
+    totuus = False
+    epatotuus = False
+    tama_klausuuli = lista
+    tama_literaali = lista.arvot
+    while True:
+        if tama_literaali.arvo == annettu:
+            totuus = True
+        if tama_literaali.arvo == annettu * (-1):
+            epatotuus = True
+        if tama_literaali.linkki is not None:
+            tama_literaali = tama_literaali.linkki
+        elif tama_klausuuli.linkki is not None:
+            tama_klausuuli = tama_klausuuli.linkki
+            tama_literaali = tama_klausuuli.arvot
+        else:
+            return totuus, epatotuus
+
 
 def karsinta(lista, jakauma): ## Ei yksikkötestata, irroitetaan mahdollisimman paljon yksiköitä.
     """Funktio, joka toteuttaa algoritmin toistettavat toimet."""
