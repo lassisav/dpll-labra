@@ -14,7 +14,7 @@ DPLL:n huonoimman tapauksen aikavaativuus on O(n²), ja tilavaativuus O(n), miss
 
 #### Työn puutteet ja parannusehdotukset
 
-Työstä puuttuu tässä vaiheessa (viikko 4) puhtaan literaalin poisto. Lisäksi algoritmista tarpeettoman suuri osa tapahtuu vielä karsinta-funktion sisällä.
+Algoritmista tarpeettoman suuri osa tapahtuu karsinta-funktion sisällä. Myös muissa funktioissa on pilkkomisvaraa.
 
 #### Laajojen kielimallien käyttö
 
