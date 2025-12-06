@@ -19,3 +19,4 @@ DPLL-algoritmin toteutus Pythonilla. Algoritmit ja tekoäly -harjoitustyö
   - [Viikko 3](https://github.com/lassisav/dpll-labra/blob/main/dokumentaatio/viikkoraportit/viikko3.md)
   - [Viikko 4](https://github.com/lassisav/dpll-labra/blob/main/dokumentaatio/viikkoraportit/viikko4.md)
   - [Viikko 5](https://github.com/lassisav/dpll-labra/blob/main/dokumentaatio/viikkoraportit/viikko5.md)
+  - [Viikko 6](https://github.com/lassisav/dpll-labra/blob/main/dokumentaatio/viikkoraportit/viikko6.md)
