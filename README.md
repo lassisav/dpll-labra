@@ -9,6 +9,7 @@ DPLL-algoritmin toteutus Pythonilla. Algoritmit ja tekoäly -harjoitustyö
 #### Dokumentteja
 
  - [Määrittelydokumentti](https://github.com/lassisav/dpll-labra/blob/main/dokumentaatio/maarittelydokumentti.md)
+ - [Käyttöohje](https://github.com/lassisav/dpll-labra/blob/main/dokumentaatio/kayttoohje.md)
  - [Testausdokumentti](https://github.com/lassisav/dpll-labra/blob/main/dokumentaatio/testausdokumentti.md)
  - [Toteutusdokumentti](https://github.com/lassisav/dpll-labra/blob/main/dokumentaatio/toteutusdokumentti.md)
 
